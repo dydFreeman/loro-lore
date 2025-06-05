@@ -1,0 +1,19 @@
+version: '3'
+services:
+  loro-lore-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loro-lore-api
+    environment:
+      - PUID=13015
+      - PGID=13000
+      - TZ=Europe/Rome
+      - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID}
+      - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET}
+      - USER_ID=${USER_ID}
+    volumes:
+      - ./config:/app/config
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
